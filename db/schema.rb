@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20_201_203_143_151) do
     t.string 'first_name'
     t.string 'last_name'
     t.string 'gender'
-    t.integer 'rating'
+    t.integer 'rating', default: 1000
     t.string 'nickname'
     t.text 'bio'
     t.integer 'telephone'

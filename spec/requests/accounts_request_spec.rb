@@ -76,7 +76,7 @@ RSpec.describe 'Accounts', type: :request do
 
   describe 'PUT /accounts/:id' do
     context 'when the record exists' do
-      let(:params) { valid_params }
+      let(:params) { valid_params.merge!(email: Faker::Internet.email) }
       before { put "/accounts/#{account_id}", params: params }
 
       context 'and the request is valid' do
@@ -84,9 +84,10 @@ RSpec.describe 'Accounts', type: :request do
           expect(response).to have_http_status(200)
         end
 
-        it 'returns the account' do
+        it 'returns the updated account' do
           expect(json_response).not_to be_empty
           expect(json_response['id']).to eq(account_id)
+          expect(json_response['email']).to eq(params[:email])
         end
       end
 
@@ -121,8 +122,6 @@ RSpec.describe 'Accounts', type: :request do
   end
 
   def invalid_params
-    {
-      email: 'invalid'
-    }
+    valid_params.merge!(email: '')
   end
 end

@@ -14,7 +14,7 @@ RSpec.describe Profile, type: :model do
   context 'factory' do
     let!(:account) { create(:account) }
 
-    it 'should be valid' do
+    it 'is valid' do
       expect(build(:profile, account_id: account.id)).to be_valid
     end
   end
