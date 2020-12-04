@@ -2,6 +2,6 @@
 
 Rails.application.routes.draw do
   resources :accounts do
-    resource :profiles
+    resource :profiles, only: %i[show create update]
   end
 end
